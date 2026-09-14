@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "333824159640",
+    "project_id": "balaynimo-capstone",
+    "storage_bucket": "balaynimo-capstone.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333824159640:android:30a8fefd71ff3fd8c345ed",
+        "android_client_info": {
+          "package_name": "com.example.balaynimo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGIW0QWSjUY00M2hATzlYafSvb5sxO2yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
