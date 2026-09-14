@@ -1,1 +1,34 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"balaynimo-capstone","appId":"1:333824159640:android:30a8fefd71ff3fd8c345ed","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"balaynimo-capstone","configurations":{"android":"1:333824159640:android:30a8fefd71ff3fd8c345ed","ios":"1:333824159640:ios:b0c9d194f317f0d1c345ed"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "balaynimo-capstone",
+          "appId": "1:333824159640:android:30a8fefd71ff3fd8c345ed",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "balaynimo-capstone",
+          "configurations": {
+            "android": "1:333824159640:android:30a8fefd71ff3fd8c345ed",
+            "ios": "1:333824159640:ios:b0c9d194f317f0d1c345ed"
+          }
+        }
+      }
+    }
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  }
+}
