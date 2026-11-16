@@ -1,5 +1,48 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return signedIn() &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow create: if isOwner(uid) && request.resource.data.role == 'Tenant';
+      allow update: if isAdmin() ||
+        (isOwner(uid) && !request.resource.data.diff(resource.data)
+          .affectedKeys().hasAny(['role', 'verificationStatus']));
+      allow delete: if false;
+    }
+
+    match /tenants/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create, update: if isOwner(uid);
+      allow delete: if false;
+    }
+
+    match /landlords/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid) &&
+        request.resource.data.landlordAccessStatus == 'pending';
+      allow update: if isAdmin() ||
+        (isOwner(uid) && !request.resource.data.diff(resource.data)
+          .affectedKeys().hasAny(['landlordAccessStatus']));
+      allow delete: if false;
+    }
+
+    match /admins/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if false;
+    }
   }
 }
