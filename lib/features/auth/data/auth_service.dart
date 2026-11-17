@@ -66,6 +66,13 @@ class AuthService {
     if (!doc.exists) return null;
     return AppUser.fromMap(doc.id, doc.data()!);
   }
+
+    Stream<AppUser?> watchAppUser(String uid) {
+    return _db.collection('users').doc(uid).snapshots().map((doc) {
+      if (!doc.exists || doc.data() == null) return null;
+      return AppUser.fromMap(doc.id, doc.data()!);
+    });
+  }
 }
 
 final authServiceProvider = Provider<AuthService>((ref) {
@@ -74,4 +81,10 @@ final authServiceProvider = Provider<AuthService>((ref) {
 
 final authStateProvider = StreamProvider<User?>((ref) {
   return ref.watch(authServiceProvider).authStateChanges();
+});
+
+final appUserProvider = StreamProvider<AppUser?>((ref) {
+  final user = ref.watch(authStateProvider).value;
+  if (user == null) return Stream.value(null);
+  return ref.watch(authServiceProvider).watchAppUser(user.uid);
 });

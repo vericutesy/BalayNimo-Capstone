@@ -59,7 +59,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             password: _passwordController.text,
           );
       if (!mounted) return;
-      _showMessage('Account created!');
+        Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       if (!mounted) return;
       _showMessage(_friendlyError(e.code));

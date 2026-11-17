@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'features/auth/presentation/register_screen.dart';
+import 'features/auth/presentation/auth_gate.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: RegisterScreen(),
+      home: AuthGate(),
     );
   }
 }
