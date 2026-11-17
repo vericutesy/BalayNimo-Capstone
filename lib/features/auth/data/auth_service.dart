@@ -73,6 +73,12 @@ class AuthService {
       return AppUser.fromMap(doc.id, doc.data()!);
     });
   }
+
+    Future<void> updateName(String name) async {
+    final uid = _auth.currentUser?.uid;
+    if (uid == null) return;
+    await _db.collection('users').doc(uid).update({'name': name.trim()});
+  }
 }
 
 final authServiceProvider = Provider<AuthService>((ref) {

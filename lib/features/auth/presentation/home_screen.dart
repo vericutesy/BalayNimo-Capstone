@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import '../../profile/presentation/profile_screen.dart';
 import '../../auth/data/auth_service.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -17,9 +17,11 @@ class HomeScreen extends ConsumerWidget {
         backgroundColor: const Color(0xFFEEF4F8),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout_rounded),
-            tooltip: 'Logout',
-            onPressed: () => ref.read(authServiceProvider).logout(),
+            icon: const Icon(Icons.person_rounded),
+            tooltip: 'Profile',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            ),
           ),
         ],
       ),
